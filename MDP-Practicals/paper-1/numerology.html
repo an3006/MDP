@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology Predictions</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" ng-app="numerologyApp" ng-controller="NumerologyController">
+    <h2>Numerology Predictions</h2>
+    <form ng-submit="submitForm()">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" ng-model="firstName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" ng-model="lastName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth (dd/mm/yyyy):</label>
+            <input type="text" class="form-control" id="dob" ng-model="dob" pattern="\d{2}/\d{2}/\d{4}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div ng-if="prediction">
+        <h3>Numerological Predictions:</h3>
+        <p>{{ prediction }}</p>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script>
+    angular.module('numerologyApp', [])
+        .controller('NumerologyController', function ($scope) {
+            $scope.submitForm = function () {
+                const dobDigits = $scope.dob.match(/\d/g);
+                const sumOfDigits = dobDigits.reduce((acc, digit) => acc + parseInt(digit), 0);
+
+                const firstDigitDay = parseInt(dobDigits[0]);
+                const firstDigitYear = parseInt(dobDigits[6]);
+
+                if (sumOfDigits < 10) {
+              
+                    $scope.prediction = 'You will get a chance to go abroad.';
+                } else {
+                    $scope.prediction = 'You are less likely to go abroad.';
+                }
+
+                if (firstDigitDay + firstDigitYear > 3) {
+                   
+                    $scope.prediction += ' Your career prospects are very bright.';
+                } else {
+                    $scope.prediction += ' You should opt for a career in sales and marketing.';
+                }
+            };
+        });
+</script>
+
+</body>
+</html>

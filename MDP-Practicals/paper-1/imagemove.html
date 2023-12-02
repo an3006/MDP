@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Dot</title>
+    <style>
+        #dot {
+            position: absolute;
+            top: 50px; 
+            left: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<img id="dot" src="dot.png" alt="Dot Image">
+
+<script>
+    const dot = document.getElementById('dot');
+
+    document.addEventListener('keydown', (event) => {
+        const key = event.key.toUpperCase(); 
+        if (key === 'A') {
+            moveDot(-40, 0); 
+        } else if (key === 'B') {
+            moveDot(0, -40);
+        } else if (key === 'Z') {
+            moveOnBoundary();
+        }
+    });
+
+    function moveDot(dx, dy) {
+        const currentLeft = parseInt(dot.style.left) || 0;
+        const currentTop = parseInt(dot.style.top) || 0;
+
+        const newLeft = currentLeft + dx;
+        const newTop = currentTop + dy;
+
+        dot.style.left = `${newLeft}px`;
+        dot.style.top = `${newTop}px`;
+    }
+
+    function moveOnBoundary() {
+
+        const rectangleWidth = 300;
+        const rectangleHeight = 200;
+
+        const currentLeft = parseInt(dot.style.left) || 0;
+        const currentTop = parseInt(dot.style.top) || 0;
+
+  
+        if (currentLeft + 40 <= rectangleWidth) {
+            moveDot(40, 0); 
+        } else if (currentTop + 40 <= rectangleHeight) {
+            moveDot(0, 40); 
+        }
+    }
+</script>
+
+</body>
+</html>

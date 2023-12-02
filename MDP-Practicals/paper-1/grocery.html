@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Calculator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Grocery Calculator</h2>
+    <div class="form-group">
+        <label for="groceryInput">Enter Grocery Items:</label>
+        <input type="text" class="form-control" id="groceryInput" placeholder="Barley[70,5]|Wheat[40,4]|Bajra[30,3]">
+    </div>
+    <button class="btn btn-primary" onclick="calculateInvestment()">Calculate Investment</button>
+
+    <div id="output" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+    function calculateInvestment() {
+        const groceryInput = document.getElementById("groceryInput").value;
+        const items = groceryInput.split("|");
+
+        let totalInvestment = 0;
+        let outputText = "You bought ";
+
+        items.forEach(item => {
+            const match = item.match(/(\w+)\[(\d+),(\d+)\]/);
+            if (match) {
+                const itemName = match[1];
+                const costPerUnit = parseInt(match[2]);
+                const numberOfUnits = parseInt(match[3]);
+
+                totalInvestment += costPerUnit * numberOfUnits;
+
+                outputText += `${numberOfUnits} kg ${itemName}, `;
+            }
+        });
+
+        if (outputText.endsWith(", ")) {
+            outputText = outputText.slice(0, -2); 
+        }
+
+        outputText += ` and you invested Rs ${totalInvestment}.`;
+
+        document.getElementById("output").innerHTML = outputText;
+    }
+</script>
+
+</body>
+</html>

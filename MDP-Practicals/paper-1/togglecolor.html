@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="colorToggleApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Color Toggle</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body ng-controller="colorToggleCtrl">
+
+<div class="container">
+    <h2>Color Toggle</h2>
+    <p ng-style="{'color': textColor}">{{ paragraphText }}</p>
+    <button class="btn btn-primary" ng-click="toggleColor()">Toggle Color</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script>
+    angular.module('colorToggleApp', [])
+        .controller('colorToggleCtrl', function ($scope) {
+            $scope.textColor = 'orange';
+            $scope.paragraphText = 'This is a sample paragraph. Click the button to toggle color.';
+
+            $scope.toggleColor = function () {
+                $scope.textColor = ($scope.textColor === 'orange') ? 'blue' : 'orange';
+            };
+        });
+</script>
+
+</body>
+</html>

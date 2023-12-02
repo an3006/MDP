@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+</head>
+<body>
+
+<div>
+    <h2>User Details</h2>
+    <form>
+    
+        <label for="title">Title:</label>
+        <select id="title" name="title">
+            <option value="mr">Mr.</option>
+            <option value="mrs">Mrs.</option>
+        </select>
+        <br>
+
+     
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <br>
+
+        
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <br>
+
+
+        <label>Mode of Journey:</label>
+        <input type="radio" id="train" name="journeyMode" value="train" required>
+        <label for="train">Train</label>
+
+        <input type="radio" id="flight" name="journeyMode" value="flight" required>
+        <label for="flight">Flight</label>
+
+        <input type="radio" id="taxi" name="journeyMode" value="taxi" required>
+        <label for="taxi">Taxi</label>
+        <br>
+
+        <label>Luggage Type:</label>
+        <input type="checkbox" id="handbag" name="luggageType" value="handbag">
+        <label for="handbag">Handbag</label>
+
+        <input type="checkbox" id="suiteCase" name="luggageType" value="suiteCase">
+        <label for="suiteCase">Suite Case</label>
+
+        <input type="checkbox" id="purse" name="luggageType" value="purse">
+        <label for="purse">Purse</label>
+        <br>
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

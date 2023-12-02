@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div ng-app="calculatorApp" ng-controller="CalculatorController" class="container">
+    <h2>Angular Calculator</h2>
+
+    <div class="form-group">
+        <label for="num1">Enter First Number:</label>
+        <input type="text" class="form-control" id="num1" ng-model="num1" required>
+    </div>
+
+    <div class="form-group">
+        <label for="num2">Enter Second Number:</label>
+        <input type="text" class="form-control" id="num2" ng-model="num2" required>
+    </div>
+
+    <div class="form-group">
+        <label>Choose Operation:</label><br>
+        <label class="radio-inline">
+            <input type="radio" ng-model="operation" value="addition"> Addition
+        </label>
+        <label class="radio-inline">
+            <input type="radio" ng-model="operation" value="subtraction"> Subtraction
+        </label>
+        <label class="radio-inline">
+            <input type="radio" ng-model="operation" value="multiplication"> Multiplication
+        </label>
+        <label class="radio-inline">
+            <input type="radio" ng-model="operation" value="division"> Division
+        </label>
+    </div>
+
+    <button class="btn btn-primary" ng-click="calculateResult()">Calculate Result</button>
+
+    <div ng-if="result !== undefined" style="margin-top: 20px;">
+        <h3>Result:</h3>
+        <p>{{ result }}</p>
+    </div>
+
+    <div ng-if="error !== undefined" style="margin-top: 20px;">
+        <h3>Error:</h3>
+        <p>{{ error }}</p>
+    </div>
+</div>
+
+<script>
+    angular.module('calculatorApp', [])
+        .controller('CalculatorController', function ($scope) {
+            $scope.calculateResult = function () {
+               
+                if (isNaN($scope.num1) || isNaN($scope.num2)) {
+                    $scope.error = 'Invalid input. Please enter valid numbers.';
+                    $scope.result = undefined;
+                    return;
+                }
+
+                const num1 = parseFloat($scope.num1);
+                const num2 = parseFloat($scope.num2);
+
+             
+                switch ($scope.operation) {
+                    case 'addition':
+                        $scope.result = num1 + num2;
+                        $scope.error = undefined;
+                        break;
+                    case 'subtraction':
+                        $scope.result = num1 - num2;
+                        $scope.error = undefined;
+                        break;
+                    case 'multiplication':
+                        $scope.result = num1 * num2;
+                        $scope.error = undefined;
+                        break;
+                    case 'division':
+                        if (num2 === 0) {
+                            $scope.error = 'Cannot divide by zero.';
+                            $scope.result = undefined;
+                        } else {
+                            $scope.result = num1 / num2;
+                            $scope.error = undefined;
+                        }
+                        break;
+                    default:
+                        $scope.error = 'Please select an operation.';
+                        $scope.result = undefined;
+                        break;
+                }
+            };
+        });
+</script>
+
+</body>
+</html>

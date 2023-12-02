@@ -1,0 +1,27 @@
+<header>
+  <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+
+  <div class="container">
+    <a routerLink="/" class="logo" style="font-family: 'Satisfy', sans-serif;">SPICE HAVEN</a>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/profile">Profile</a>
+        </li>
+        <li class="menu-container">
+          <a (click)="navigateToOriginalApp()" class="external-link">SPICE HAVEN</a>
+          <div class="menu">
+            
+
+           
+          </div>
+        </li>
+        <li>
+          <a routerLink="/cart-page">
+            Cart <span>{{cartQuantity}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
